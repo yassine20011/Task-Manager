@@ -60,17 +60,7 @@ DevOps-Project/
 
 2. **Start all services**
    ```bash
-   docker-compose up -d
-   ```
-
-3. **Access the application**
-   - Frontend: http://localhost
-   - Backend API: http://localhost:5000
-   - PostgreSQL: localhost:5432
-
-4. **Stop all services**
-   ```bash
-   docker-compose down
+   ./setup.sh
    ```
 
 ## Local Development Setup
