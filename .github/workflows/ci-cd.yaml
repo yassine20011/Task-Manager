@@ -1,0 +1,56 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+
+  linter:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Run linter for backend
+      run: cd backend && pnpm install && pnpm run lint
+
+    - name: Run linter for frontend
+      run: cd frontend && pnpm install && pnpm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: linter
+
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install dependencies
+      run: cd backend && pnpm install
+
+    - name: Run tests
+      run: cd backend && pnpm test
+
+    
