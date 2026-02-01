@@ -32,5 +32,22 @@ Thumbs.db
 # Docker
 docker-compose.override.yml
 
-#*.md
+*.md
 !README.md
+
+# Tests
+coverage/
+.nyc_output/
+
+# Logs
+logs/
+*.log
+
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Binary files
+bin/
